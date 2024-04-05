@@ -1,6 +1,6 @@
 # Task Allocation for Stochastic Multi-Agent Systems (TASMAS) under STL Specifications
 
-**Author:** Zengjie Zhang (zengjie.zhang@hotmail.com)
+**Author:** Zengjie Zhang (z.zhang3@tue.nl)
 
 This project demonstrates the risk-aware allocation of real-time STL specifications for stochastic multi-agent systems, with restricted risk probabilities. 
 
