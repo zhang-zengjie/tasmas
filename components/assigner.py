@@ -1,4 +1,4 @@
-from commons.functions import checkout_largest_in_dict
+from utils.functions import checkout_largest_in_dict
 import gurobipy as gp
 from gurobipy import GRB
 from itertools import product
@@ -87,7 +87,7 @@ class Assigner:
         for name, agent in self.agents.items():
             for j in self.m_range:
                 self.price_list[name][j] = agent.bid(t, self.specs[j]) if self.bidding_list[name][j] else 1
-                logging.info(name + " has probed task " + self.specs[j].name + "!")
+                logging.info("Agent " + str(name) + " has probed task " + self.specs[j].name + "!")
 
 
     def assign(self, t):
