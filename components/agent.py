@@ -1,5 +1,5 @@
 import numpy as np
-from commons.functions import PRT, calculate_probabilities, calculate_risks
+from utils.functions import PRT, calculate_probabilities, calculate_risks
 from gurobipy import GRB
 from probstlpy.solvers.gurobi.gurobi_micp import GurobiMICPSolver as MICPSolver
 import logging
@@ -7,37 +7,37 @@ import logging
 
 class Agent:
 
-    def __init__(self, sys, spec, N, x0, Q, R, ub, name):
+    def __init__(self, model, spec, N, x0, ub, name):
 
         self.name = name
         self.N = N              # Time-horizon
-        self.sys = sys
+        self.sys = model.sys
 
         self.psi = spec
 
         self.x0 = x0
-        self.w = np.random.multivariate_normal(sys.mu, sys.Sigma, N).T
+        self.w = np.random.multivariate_normal(self.sys.mu, self.sys.Sigma, N).T
         # self.w = np.zeros([sys.n, N])  # uncomment to check with no disturbance
 
-        self.Q = Q
-        self.R = R
+        self.Q = model.Q
+        self.R = model.R
 
         # Compute 1) relation between tube and probability & 2) Stabilizing feedback gain
         self.diag_sigma_inf, self.K = PRT(self.sys, self.Q, self.R)
 
         # Initialize Memory
-        self.xx = np.zeros([sys.n, self.N + 1])
-        self.zz = np.zeros([sys.n, self.N + 1])
+        self.xx = np.zeros([self.sys.n, self.N + 1])
+        self.zz = np.zeros([self.sys.n, self.N + 1])
 
         self.xx[:, 0] = self.x0
         self.zz[:, 0] = self.x0
 
-        self.z = np.zeros([sys.n, self.N + 1])
+        self.z = np.zeros([self.sys.n, self.N + 1])
         self.zh = []
         
-        self.err = np.zeros([sys.n, self.N + 1])
-        self.vv = np.zeros([sys.m, self.N])
-        self.v = np.zeros([sys.m, self.N])
+        self.err = np.zeros([self.sys.n, self.N + 1])
+        self.vv = np.zeros([self.sys.m, self.N])
+        self.v = np.zeros([self.sys.m, self.N])
         
         self.u_limits = np.array([[-ub, ub], [-ub, ub]])
 
@@ -121,12 +121,12 @@ class Agent:
         self.solver.AddSTLConstraints(spec)
         self.solver.AddNewSTLProbConstraint(spec)
 
-        logging.info(self.name + " has accepted the new task " + spec.name + " at step " + str(t) + "!")
+        logging.info("Agent " + str(self.name) + " has accepted the new task " + spec.name + " at step " + str(t) + "!")
 
 
     def reject_task(self, t, spec):
         
-        logging.info(self.name + " has rejected the new task " + spec.name + " at step " + str(t) + "!")
+        logging.info("Agent " + str(self.name) + " has rejected the new task " + spec.name + " at step " + str(t) + "!")
 
 
     def apply_control(self, t, solution):
@@ -140,7 +140,7 @@ class Agent:
         if flag != GRB.OPTIMAL:
 
             self.zz[:, t] = self.z[:, t]
-            logging.info(self.name + " has rejected the new measurement at step " + str(t) + "!")
+            logging.info("Agent " + str(self.name) + " has rejected the new measurement at step " + str(t) + "!")
 
         else:
             # Update control strategy
@@ -150,7 +150,7 @@ class Agent:
             self.err[:, t] = 0
             self.accept_meas += [t]
             
-            logging.info(self.name + " has accepted the new measurement at step " + str(t) + "!")
+            logging.info("Agent " + str(self.name) + " has accepted the new measurement at step " + str(t) + "!")
         
         self.update_memory(t)
         self.update_probabilities(t)

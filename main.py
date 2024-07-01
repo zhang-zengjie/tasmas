@@ -1,29 +1,44 @@
 import numpy as np
-from configs.params import get_assigner
-from configs.draw import draw
-from commons.functions import config_logger
+from config import agent_model, agent_specs
+from utils.draw import draw
+from utils.functions import config_logger
+from components.agent import Agent
+from components.assigner import Assigner
 import logging
 
 
 def main():
 
-    N = 25                  # Time-horizon
-    n = 2                   # System dynamics
+    time_horizon = 25
+    space_dim = 2
+    num_agents = 4
 
-    TA, LG, LL = get_assigner(N, n)     # TA: the task assigner
-    tlg, slg = LG                       # LG: the list of global specifications (slg) and its time list (tlg) 
-    tll, sll = LL                       # LG: the list of local specifications (sll) and its time list (tlg)
+    model = agent_model(space_dim)
+    specs = agent_specs(space_dim, time_horizon)        
+
+    initial_states = [[5, 5], [15, 5], [25, 5], [35, 5]]
+    control_bounds = [4, 5, 6, 7]
+
+    agents = {i: Agent(
+        model, 
+        specs.safety, 
+        time_horizon, 
+        x0=np.array(initial_states[i]), 
+        ub=control_bounds[i], 
+        name=i) for i in range(num_agents)}
+    TA = Assigner(agents)
+
 
     # The list of global specifications
 
     config_logger(logging, 'INFO.log')
-    for t in range(N):
+    for t in range(time_horizon):
 
-        if t in tlg:
-            TA.assign_global(t, slg[tlg.index(t)])
+        if t in specs.tlg:
+            TA.assign_global(t, specs.slg[specs.tlg.index(t)])
         
-        if t in tll:
-            TA.assign_local(t, sll[tll.index(t)])
+        if t in specs.tll:
+            TA.assign_local(t, specs.sll[specs.tll.index(t)])
         
         TA.update_control(t)
 

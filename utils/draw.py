@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
-from commons.functions import get_coordinates, get_center
-from .params import SAFETY, LOAD, HOMES, CASES, OBSTACLES
+from .functions import get_coordinates, get_center
+from config import SAFETY, LOAD, HOMES, CASES, OBSTACLES
 
 # Define colors
 OBSTACLE_COLOR = [1, 0.3, 0.3]
@@ -8,7 +8,7 @@ CASE_COLOR = [1, 1, 0.3]
 HOME_COLOR = [0.3, 1, 0.4]
 LOAD_COLOR = [0, 0.5, 1]
 SAFETY_COLOR = [0.8, 0.9, 1]
-STATE_COLOR = {'A': [204/255, 0, 0], 'B': [0, 51/255, 204/255], 'C': [204/255, 102/255, 0], 'D': [0, 128/255, 43/255]}
+STATE_COLOR = {0: [204/255, 0, 0], 1: [0, 51/255, 204/255], 2: [204/255, 102/255, 0], 3: [0, 128/255, 43/255]}
 
 
 def draw(agents, meas):
