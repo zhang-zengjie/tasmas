@@ -1,7 +1,5 @@
 from probstlpy.benchmarks.common import inside_rectangle_formula, outside_rectangle_formula
 import numpy as np
-from components.agent import Agent
-from components.assigner import Assigner
 from probstlpy.systems.linear import LinearSystem
 
 
