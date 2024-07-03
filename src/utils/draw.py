@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-from .functions import get_coordinates, get_center
-from config import SAFETY, LOAD, HOMES, CASES, OBSTACLES
+from utils.functions import get_coordinates, get_center
+from utils.config import SAFETY, LOAD, HOMES, CASES, OBSTACLES
+import os
 
 # Define colors
 OBSTACLE_COLOR = [1, 0.3, 0.3]
@@ -50,7 +51,10 @@ def draw(measures):
     plt.legend(loc=(0.02, 0.5), fontsize="12", ncol=1)
 
     # Save figure
-    plt.savefig('map.svg', bbox_inches='tight', pad_inches=0.1, transparent=True)
+    if not os.path.exists('figures'):
+        os.makedirs('figures')
+
+    plt.savefig(os.path.join('figures', 'map.svg'), bbox_inches='tight', pad_inches=0.1, transparent=True)
 
     #Show figure
     plt.show()

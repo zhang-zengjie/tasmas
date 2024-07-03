@@ -1,10 +1,10 @@
 import numpy as np
-from config import agent_model, agent_specs
+from utils.config import agent_model, agent_specs
 from utils.draw import draw
 from utils.functions import config_logger
 from components.agent import Agent
 from components.assigner import Assigner
-import logging
+import logging, os
 
 
 def main():
@@ -31,7 +31,10 @@ def main():
 
     # The list of global specifications
 
-    config_logger(logging, 'INFO.log')
+    if not os.path.exists(os.path.join('logs')):
+        os.makedirs(os.path.join('logs'))
+
+    config_logger(logging, os.path.join('logs', 'INFO.log'))
     for t in range(time_horizon):
 
         if t in specs.tlg:
