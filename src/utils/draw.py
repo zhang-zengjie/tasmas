@@ -11,7 +11,7 @@ SAFETY_COLOR = [0.8, 0.9, 1]
 STATE_COLOR = {0: [204/255, 0, 0], 1: [0, 51/255, 204/255], 2: [204/255, 102/255, 0], 3: [0, 128/255, 43/255]}
 
 
-def draw(agents, meas):
+def draw(measures):
 
     # Define figure
     plt.figure(figsize=(5, 4))
@@ -34,8 +34,8 @@ def draw(agents, meas):
         plt.text(*get_center(region), name, fontsize=12, horizontalalignment='center')
 
 
-    for name in agents:
-        plt.plot(meas[name][0], meas[name][1], marker='o', color=STATE_COLOR[name], linewidth=2, markersize=4, label=name)
+    for name, measure in measures.items():
+        plt.plot(measure[0], measure[1], marker='o', color=STATE_COLOR[name], linewidth=2, markersize=4, label=name)
 
 
     # Limit figure
