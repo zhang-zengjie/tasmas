@@ -42,16 +42,16 @@ def main():
         
         TA.update_control(t)
 
-    meas = {}
+    measures = {}
     for name, agent in TA.agents.items():
-        meas[name] = agent.xx
+        measures[name] = agent.xx
 
-    return TA.agents, meas
+    draw(measures)
 
 
 if __name__ == "__main__":
 
     # Set random seed       
     np.random.seed(3)
-    agents, meas = main()
-    draw(agents, meas)
+    main()
+    
