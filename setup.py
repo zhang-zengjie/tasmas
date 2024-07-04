@@ -8,12 +8,12 @@ setup(
     author='Zengjie Zhang',
     author_email='z.zhang3@tue.nl',
     license='BSD3',
-    packages=find_packages(),
+    packages=find_packages(where='src'),
+    package_dir={'': 'src'},
     install_requires=[
-        'requests',
         'gurobipy',
         'matplotlib',
-        'numpy',
+        'numpy<=1.26.4',
         'scipy',
         'treelib',
         'control'
@@ -25,8 +25,5 @@ setup(
     python_requires='>=3.7',
     entry_points={
     },
-    include_package_data=True,
-    package_data={
-        '': ['*.txt', '*.md', 'src/*.py']
-    },
+    include_package_data=True
 )
