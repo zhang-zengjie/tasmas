@@ -48,7 +48,7 @@ This library considers a multi-bus routing scenario in a tourism attraction poin
  
 1. Install Python environment;
     ```
-    pip install -r requirements.txt
+    pip install .
     ```
 
 2. Activate the `gurobi` license (See [How To](https://www.gurobi.com/documentation/current/remoteservices/licensing.html)). Note that this project is compatible with `gurobi` Released version `11.0.1`. Keep your `gurobi` updated in case of incompatibility. 
