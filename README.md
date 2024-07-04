@@ -54,7 +54,7 @@ This library considers a multi-bus routing scenario in a tourism attraction poin
 2. Activate the `gurobi` license (See [How To](https://www.gurobi.com/documentation/current/remoteservices/licensing.html)). Note that this project is compatible with `gurobi` Released version `11.0.1`. Keep your `gurobi` updated in case of incompatibility. 
 
 3. Running Instructions
-    - Run the main script `main.py`;
+    - Run the main script `example/main.py`;
     - Watch the terminal for runtime information;
     - The figures will show up at the end of running; They are also automatically saved in the root directory;
     - The figures may impede each other; Drag the figures for a better view;
