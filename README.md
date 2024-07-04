@@ -35,54 +35,34 @@ This library considers a multi-bus routing scenario in a tourism attraction poin
 
 **Python Environment**
  - Python version: test passed on `python=3.11`
- - **Recommended**: IDE ([VS code](https://code.visualstudio.com/) or [Pycharm](https://www.jetbrains.com/pycharm/)) and [Conda](https://www.anaconda.com/)
- - Required Packages: `numpy`, `treelib`, `matplotlib`, `scipy`. 
+ - Required Packages: 
+    - `matplotlib==3.9.0`
+    - `numpy==1.26.4`
+    - `scipy==1.14.0`
+    - `treelib==1.7.0`
+    - `control==0.10.0` (see [Documentation](https://python-control.readthedocs.io/en/latest/intro.html))
+    - `gurobipy==11.0.2` (**license** required, see [How to Get a Gurobi License](https://www.gurobi.com/solutions/licensing/))
+
  
- **Required Libraries**
- - `gurobipy` solver (**license** required, see [How to Get a Gurobi License](https://www.gurobi.com/solutions/licensing/))
- - `Python control` toolbox (see [Documentation](https://python-control.readthedocs.io/en/latest/intro.html))
+### Quick Guide
  
-### Quick Installation
- 
-1. Install conda following this [instruction](https://conda.io/projects/conda/en/latest/user-guide/install/index.html);
+1. Install Python environment;
+    ```
+    pip install -r requirements.txt
+    ```
 
-2. Open the conda shell, and create an independent project environment;
-```
-conda create --name tasmas python=3.11
-```
+2. Activate the `gurobi` license (See [How To](https://www.gurobi.com/documentation/current/remoteservices/licensing.html)). Note that this project is compatible with `gurobi` Released version `11.0.1`. Keep your `gurobi` updated in case of incompatibility. 
 
-3. In the same shell, activate the created environment
-```
-conda activate tasmas
-```
-
-4. In the same shell, within the `tasmas` environment, install the dependencies one by one
- ```
-conda install -c anaconda numpy
-conda install -c conda-forge treelib
-conda install -c conda-forge matplotlib
-conda install -c anaconda scipy
-```
-
-5. In the same shell, within the `tasmas` environment, install the libraries
-```
-python -m pip install gurobipy
-pip install control
-```
-
-6. Last but not least, activate the `gurobi` license (See [How To](https://www.gurobi.com/documentation/current/remoteservices/licensing.html)). Note that this project is compatible with `gurobi` Released version `11.0.1`. Keep your `gurobi` updated in case of incompatibility. 
-
-### Running Instructions
-
-- Run the main script `main.py`;
-- Watch the terminal for runtime information;
-- The figures will show up at the end of running; They are also automatically saved in the root directory;
-- The figures may impede each other; Drag the figures for a better view;
-- Check out the logging file `INFO.log` for the runtime information.
+3. Running Instructions
+    - Run the main script `main.py`;
+    - Watch the terminal for runtime information;
+    - The figures will show up at the end of running; They are also automatically saved in the root directory;
+    - The figures may impede each other; Drag the figures for a better view;
+    - Check out the logging file `INFO.log` for the runtime information.
 
 ### Fine-Tuning the Code
 
-Feel free to try out the code with different parameter settings in the `configs/params.py` file.
+Feel free to try out the code with different parameter settings in the `src/utils/config.py` file.
 
 - Change the coordinates of the regions in this file to construct a different map;
 - Change the standard deviation variable `Sigma` for different noise levels;
