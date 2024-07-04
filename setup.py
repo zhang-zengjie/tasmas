@@ -4,8 +4,6 @@ setup(
     name='tasmas',
     version='0.1.0',
     description='A risk-aware framework for task allocation of stochastic multi-agent systems',
-    long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',
     url='https://github.com/zhang-zengjie/tasmas.git',
     author='Zengjie Zhang',
     author_email='z.zhang3@tue.nl',
