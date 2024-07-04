@@ -11,7 +11,7 @@ setup(
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     install_requires=[
-        'gurobipy',
+        'gurobipy<=11.0.2',
         'matplotlib',
         'numpy<=1.26.4',
         'scipy',
