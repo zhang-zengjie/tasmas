@@ -3,6 +3,7 @@
 *.png
 */.DS_store
 */.idea
+gitconfig
 */__init__.py
 build
 *egg-info
