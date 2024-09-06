@@ -6,6 +6,10 @@ This project demonstrates the risk-aware allocation of real-time STL specificati
 
 ## Introduction
 
+A practical engineering system is often required to accomplish given tasks with restricted risk levels. This can be achieved by risk-aware control incorporating the stochastic uncertainty of the system, rendering a stochastic planning problem with signal temporal logic (STL) specifications.
+
+Nevertheless, many practical applications need to dynamically assign tasks to the system during runtime. This requires the system to adjust or reschedule its current control strategy to accept the new task.
+
 ### Associated Research Work
 
 This library is associated with the Arxiv article in [https://arxiv.org/abs/2404.02111](https://arxiv.org/abs/2404.02111).
